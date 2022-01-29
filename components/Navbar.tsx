@@ -13,7 +13,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { DISABLED_PROFILE_TEXT } from "../util/constants";
+import { DISABLED_PROFILE_TEXT } from "../utils/constants";
 import LogoutButton from "./LogoutButton";
 import Navlink from "./Navlink";
 

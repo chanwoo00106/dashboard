@@ -1,9 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+import AuthForm from "../components/AuthForm";
+import CreatePost from "../components/CreatePost";
 import styles from "../styles/Home.module.css";
+import { useMe } from "../utils/hooks";
 
 const Home: NextPage = () => {
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+
+  const { me } = useMe();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,9 +20,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
+      {!loggedIn ? <AuthForm /> : <CreatePost />}
 
       <footer className={styles.footer}>
         <a
