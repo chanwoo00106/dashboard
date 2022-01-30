@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthForm from "../components/AuthForm";
 import CreatePost from "../components/CreatePost";
 import styles from "../styles/Home.module.css";
@@ -11,6 +11,13 @@ const Home: NextPage = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   const { me } = useMe();
+
+  useEffect(() => {
+    if (me) {
+      const isEmpty: boolean = Object.keys(me).length === 0;
+      isEmpty ? setLoggedIn(false) : setLoggedIn(true);
+    }
+  }, [me]);
 
   return (
     <div className={styles.container}>

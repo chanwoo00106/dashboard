@@ -1,4 +1,4 @@
-export const fetcher = (url: string, data: any) => {
+export const fetcher = (url: string, data: any): any => {
   fetch(window.location.origin + url, {
     method: data ? "POST" : "GET",
     credentials: "include",
@@ -6,5 +6,7 @@ export const fetcher = (url: string, data: any) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then((res) => res.json());
+  }).then((res) => {
+    return res.json();
+  });
 };

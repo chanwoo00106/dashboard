@@ -13,6 +13,6 @@ export default async function handler(
     const me = await prisma.user.findUnique({ where: { id } });
     res.status(200).json(me);
   } else {
-    res.status(403).json({});
+    res.json({});
   }
 }
