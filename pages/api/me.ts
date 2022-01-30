@@ -11,7 +11,7 @@ export default async function handler(
   if (token) {
     const { id }: any = jwt.verify(token, process.env.JWT_SECRET || "");
     const me = await prisma.user.findUnique({ where: { id } });
-    res.status(200).json(me);
+    res.status(200).json({ me });
   } else {
     res.json({});
   }

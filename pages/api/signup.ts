@@ -49,7 +49,7 @@ export default async function handler(
         secure: process.env.NODE_ENV === "production",
       })
     );
-    res.json(user);
+    res.json({ email: user.email });
   } catch (e) {
     res.json({ error: "A user with the email already exists" });
   }
