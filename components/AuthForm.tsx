@@ -95,7 +95,7 @@ function AuthForm() {
                 <Input
                   type="password"
                   value={password}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 ></Input>
               </FormControl>
               <Stack spacing={10}>
