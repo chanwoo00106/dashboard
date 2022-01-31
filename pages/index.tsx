@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (me) {
       const isEmpty: boolean = Object.keys(me).length === 0;
-      setLoggedIn(isEmpty);
+      setLoggedIn(!isEmpty);
     }
   }, [me]);
 
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {loggedIn ? <AuthForm /> : <CreatePost />}
+      {loggedIn ? <CreatePost /> : <AuthForm />}
 
       <footer className={styles.footer}>
         <a

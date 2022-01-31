@@ -11,5 +11,5 @@ export const fetcher = (url: string, data: any) =>
       return r.json();
     })
     .then((r) => {
-      return r.me;
+      return r;
     });

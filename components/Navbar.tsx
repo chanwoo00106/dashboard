@@ -12,20 +12,31 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DISABLED_PROFILE_TEXT } from "../utils/constants";
+import { useMe } from "../utils/hooks";
 import LogoutButton from "./LogoutButton";
 import Navlink from "./Navlink";
 
 function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
+
+  const { me } = useMe();
+
+  useEffect(() => {
+    if (me) {
+      const isEmpty: boolean = Object.keys(me).length === 0;
+      setLoggedIn(!isEmpty);
+    }
+  }, [me]);
+
   return (
     <div>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems="center" justifyContent={"space-between"}>
           <HStack spacing={8} alignItems="center">
-            <Navlink mr={4} to="/profile">
+            <Navlink mr={4} to="/">
               Home
             </Navlink>
             <Tooltip
