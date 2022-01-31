@@ -27,25 +27,30 @@ function AuthForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data, err } = await fetcher(
+      const { data, error } = await fetcher(
         `/api/${authButtonState ? "login" : "signup"}`,
         { email, password }
       );
-      if ((email.trim() === "" || password.trim() === "") && authButtonState) {
+      if (
+        (email.length === 0 && authButtonState) ||
+        (password.length === 0 && authButtonState)
+      ) {
         toast({
           position: "top",
           title: "An error occured",
-          description: `${err}`,
+          description: `${error}`,
           status: "error",
+          duration: 5000,
           isClosable: true,
         });
         setLoading(false);
-      } else if (err) {
+      } else if (error) {
         toast({
           position: "top",
           title: "An error occured",
-          description: `${err}`,
+          description: `${error}`,
           status: "error",
+          duration: 5000,
           isClosable: true,
         });
         setLoading(false);
@@ -55,6 +60,7 @@ function AuthForm() {
           title: "Success",
           description: `Logged in with success`,
           status: "success",
+          duration: 5000,
           isClosable: true,
         });
       }
@@ -69,10 +75,11 @@ function AuthForm() {
       <Flex minH="50vh" align="center" justify="center">
         <Stack spacing={8} mx="auto" w={600} maxW="lg" py={12} px={6}>
           <Stack align="center">
-            <Text fontSize="lg" color={"gray.600"}>
+            <Text fontSize={"lg"} color={"gray.600"}>
               {authButtonState
-                ? "Login to your account"
-                : "Sign up to your account"}
+                ? "Login to your account for commenting"
+                : "Sign up to your account for commenting"}{" "}
+              ✌️
             </Text>
           </Stack>
           <Box

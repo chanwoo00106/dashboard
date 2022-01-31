@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (me) {
       const isEmpty: boolean = Object.keys(me).length === 0;
-      setLoggedIn(!isEmpty);
+      setLoggedIn(isEmpty);
     }
   }, [me]);
 
