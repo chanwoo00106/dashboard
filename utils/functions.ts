@@ -3,3 +3,7 @@ export function valideEmail(inputValue: any): boolean {
   if (regexEmail.test(inputValue)) return true;
   return false;
 }
+
+export const truncate = (str: string) => {
+  return str.length > 1 ? str.substring(0, 1) + "" : str;
+};
