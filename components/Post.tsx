@@ -14,6 +14,7 @@ import { PostProps } from "../types/props";
 import { truncate } from "../utils/functions";
 import { useMe, usePost } from "../utils/hooks";
 import DeleteButton from "./DeleteButton";
+import ReadMoreButton from "./ReadMoreButton";
 
 function Post() {
   const toast = useToast();
@@ -26,7 +27,15 @@ function Post() {
       <Stack spacing={8} mx="auto" w={1200} py={12} px={6}>
         {post.map(
           (
-            { id, author, authorId, text, createdAt, likes }: PostProps,
+            {
+              id,
+              author,
+              authorId,
+              text,
+              createdAt,
+              likes,
+              comments,
+            }: PostProps,
             i: number
           ) => (
             <Center key={i} py={6}>
@@ -47,7 +56,7 @@ function Post() {
                     fontSize="sm"
                     letterSpacing={1.1}
                   >
-                    HELLO
+                    hello
                   </Text>
                   <Text color="gray.500">{text}</Text>
                 </Stack>
@@ -61,7 +70,7 @@ function Post() {
                   </Stack>
                 </Stack>
                 <Stack mt={8} direction="row" spacing={6}>
-                  {me && author.id === me.id && (
+                  {Object.keys(me).length !== 0 && author.id === me.id && (
                     <DeleteButton id={id} post={post} />
                   )}
                 </Stack>
@@ -73,6 +82,7 @@ function Post() {
                     {/* <CommentButton /> */}
                   </Stack>
                 </Stack>
+                <ReadMoreButton id={id} comments={comments} />
               </Box>
             </Center>
           )

@@ -44,3 +44,8 @@ export interface DeleteButtonProps {
   id: number;
   post: PostProps;
 }
+
+export interface ReactMoreButtonProps {
+  id: number;
+  comments: CommentProps;
+}
