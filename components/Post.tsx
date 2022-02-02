@@ -14,6 +14,7 @@ import { useCallback } from "react";
 import { PostProps } from "../types/props";
 import { truncate } from "../utils/functions";
 import { useMe, usePost } from "../utils/hooks";
+import CommentButton from "./CommentButton";
 import DeleteButton from "./DeleteButton";
 import LikeButton from "./LikeButton";
 import ReadMoreButton from "./ReadMoreButton";
@@ -109,7 +110,7 @@ function Post() {
                     <Text fontSize={"sm"} color={"gray.500"}>
                       {comments?.length}
                     </Text>
-                    {/* <CommentButton /> */}
+                    <CommentButton id={id} comments={comments} />
                   </Stack>
                 </Stack>
                 <ReadMoreButton id={id} comments={comments} />
