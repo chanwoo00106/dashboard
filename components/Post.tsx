@@ -50,27 +50,27 @@ function Post() {
               >
                 <Stack>
                   <Text
-                    colorScheme="green.500"
+                    color="green.500"
                     textTransform="uppercase"
                     fontWeight={800}
                     fontSize="sm"
                     letterSpacing={1.1}
                   >
-                    hello
+                    Post
                   </Text>
                   <Text color="gray.500">{text}</Text>
                 </Stack>
                 <Stack mt={10} direction="row" spacing={4} align="center">
-                  <Avatar src="" name={truncate(author.email)} alt={"Author"} />
+                  <Avatar src="" name={truncate(author.email)} alt="Author" />
                   <Stack direction="column" spacing={0} fontSize="sm">
-                    <Text fontWeight={600}>{author?.email}</Text>
+                    <Text fontWeight={600}>{author.email}</Text>
                     <Text color="gray.500">
                       {moment(createdAt).format("Do MMMM YYYY")}
                     </Text>
                   </Stack>
                 </Stack>
                 <Stack mt={8} direction="row" spacing={6}>
-                  {Object.keys(me).length !== 0 && author.id === me.id && (
+                  {me && author.id === me.id && (
                     <DeleteButton id={id} post={post} />
                   )}
                 </Stack>
