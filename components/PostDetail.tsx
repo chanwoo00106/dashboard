@@ -4,6 +4,8 @@ import {
   Center,
   Divider,
   Flex,
+  HStack,
+  Image,
   Stack,
   Text,
   useColorModeValue,
@@ -11,12 +13,30 @@ import {
 } from "@chakra-ui/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { PostDetailProps } from "../types/props";
+import { BlogAuthorProps, CommentProps, PostDetailProps } from "../types/props";
 import { truncate } from "../utils/functions";
 import { useMe } from "../utils/hooks";
+import AuthForm from "./AuthForm";
+import CommentForm from "./CommentForm";
+
+export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
+  return (
+    <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
+      <Image
+        borderRadius="full"
+        boxSize="40px"
+        src="https://100k-faces.glitch.me/random-image"
+        alt={`Avatar of ${props.name}`}
+      />
+      <Text fontWeight="medium">{props.name}</Text>
+      <Text>—</Text>
+      <Text>{props.date}</Text>
+    </HStack>
+  );
+};
 
 function PostDetail({ pst, id, authorId }: PostDetailProps) {
-  const [LoggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const toast = useToast();
   const { me } = useMe();
 
@@ -79,9 +99,37 @@ function PostDetail({ pst, id, authorId }: PostDetailProps) {
         </Stack>
       </Flex>
 
+      {!loggedIn ? <AuthForm /> : <CommentForm id={pst.id} />}
+
       <Center height="20px">
         <Divider width="80%" orientation="horizontal" />
       </Center>
+
+      {pst.comments?.map(
+        ({ author, text, createdAt }: CommentProps, i: number) => (
+          <Flex key={i} align={"center"} justify={"center"}>
+            <Stack spacing={8} mx={"auto"} w={1200} px={6}>
+              <Center py={2}>
+                <Box
+                  maxW={"800px"}
+                  w={"full"}
+                  rounded={"md"}
+                  p={6}
+                  overflow={"hidden"}
+                >
+                  <Text as="p" fontSize="md" marginTop="2">
+                    {text}
+                  </Text>
+                  <BlogAuthor
+                    name={author.email}
+                    date={moment(createdAt).format("Do MMMM YYYY")}
+                  />
+                </Box>
+              </Center>
+            </Stack>
+          </Flex>
+        )
+      )}
     </>
   );
 }

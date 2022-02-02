@@ -33,6 +33,7 @@
     "mtxr.sqltools",
     "mtxr.sqltools-driver-pg",
     "prisma.prisma",
+    "mutantdino.resourcemonitor",
     "wix.vscode-import-cost",
     "esbenp.prettier-vscode",
     "eamodio.gitlens"

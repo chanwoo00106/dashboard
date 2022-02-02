@@ -59,3 +59,14 @@ export interface PostDetailProps {
   pst: PostProps;
   authorId: number;
 }
+
+export interface CommentProps {
+  id: number;
+  text: string;
+  createdAt: Date;
+}
+
+export interface BlogAuthorProps {
+  date: string;
+  name: string;
+}
