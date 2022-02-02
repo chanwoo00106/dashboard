@@ -14,6 +14,7 @@ import { PostProps } from "../types/props";
 import { truncate } from "../utils/functions";
 import { useMe, usePost } from "../utils/hooks";
 import DeleteButton from "./DeleteButton";
+import LikeButton from "./LikeButton";
 import ReadMoreButton from "./ReadMoreButton";
 
 function Post() {
@@ -78,6 +79,12 @@ function Post() {
                   <Stack spacing={0} align="center">
                     <Text fontSize="sm" color="gray.500">
                       {likes?.length}
+                    </Text>
+                    <LikeButton id={id} authorId={authorId} />
+                  </Stack>
+                  <Stack spacing={0} align={"center"}>
+                    <Text fontSize={"sm"} color={"gray.500"}>
+                      {comments?.length}
                     </Text>
                     {/* <CommentButton /> */}
                   </Stack>

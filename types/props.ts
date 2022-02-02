@@ -70,3 +70,8 @@ export interface BlogAuthorProps {
   date: string;
   name: string;
 }
+
+export interface LikeButtonProps {
+  id: number;
+  authorId: number;
+}

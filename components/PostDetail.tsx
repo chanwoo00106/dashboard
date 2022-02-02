@@ -105,8 +105,9 @@ function PostDetail({ pst, id, authorId }: PostDetailProps) {
         <Divider width="80%" orientation="horizontal" />
       </Center>
 
-      {pst.comments?.map(
+      {pst.comments.map(
         ({ author, text, createdAt }: CommentProps, i: number) => (
+          // <TestimonialCard key={i} />
           <Flex key={i} align={"center"} justify={"center"}>
             <Stack spacing={8} mx={"auto"} w={1200} px={6}>
               <Center py={2}>
