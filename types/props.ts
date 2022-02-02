@@ -74,4 +74,5 @@ export interface BlogAuthorProps {
 export interface LikeButtonProps {
   id: number;
   authorId: number;
+  childToParent(succes: boolean): any;
 }

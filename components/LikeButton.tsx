@@ -5,13 +5,14 @@ import { LikeButtonProps } from "../types/props";
 import { LIKE_BUTTON_TEXT } from "../utils/constants";
 import { fetcher } from "../utils/fetcher";
 
-function LikeButton({ id, authorId }: LikeButtonProps) {
+function LikeButton({ id, authorId, childToParent }: LikeButtonProps) {
   const onClick = async () => {
     const { success, error } = await fetcher("/api/like/create", {
       id,
       authorId,
     });
     await mutate("/api/post");
+    childToParent(success ? true : error);
   };
   return (
     <Tooltip placement="left" hasArrow label={LIKE_BUTTON_TEXT} bg="green.600">

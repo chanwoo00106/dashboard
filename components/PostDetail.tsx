@@ -12,12 +12,13 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BlogAuthorProps, CommentProps, PostDetailProps } from "../types/props";
 import { truncate } from "../utils/functions";
 import { useMe } from "../utils/hooks";
 import AuthForm from "./AuthForm";
 import CommentForm from "./CommentForm";
+import LikeButton from "./LikeButton";
 
 export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
   return (
@@ -48,6 +49,24 @@ function PostDetail({ pst, id, authorId }: PostDetailProps) {
       setLoggedIn(!isEmpty);
     }
   }, [me]);
+
+  const handleClick = useCallback(
+    (errorFromChild) => {
+      const isErrorAsString = typeof errorFromChild === "string";
+      const likedSuccess = "Liked with success";
+      toast({
+        position: "top",
+        title: `${isErrorAsString ? "Warning" : "Success"}`,
+        description: `${
+          isErrorAsString ? `${errorFromChild}` : `${likedSuccess}`
+        }`,
+        status: `${isErrorAsString ? "warning" : "success"}`,
+        duration: 5000,
+        isClosable: true,
+      });
+    },
+    [toast]
+  );
 
   return (
     <>
@@ -92,6 +111,11 @@ function PostDetail({ pst, id, authorId }: PostDetailProps) {
                   <Text fontSize="sm" color="gray.500">
                     {pst.likes?.length}
                   </Text>
+                  <LikeButton
+                    childToParent={handleClick}
+                    id={id}
+                    authorId={authorId}
+                  />
                 </Stack>
               </Stack>
             </Box>
