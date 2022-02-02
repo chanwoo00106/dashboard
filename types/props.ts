@@ -49,3 +49,13 @@ export interface ReactMoreButtonProps {
   id: number;
   comments: CommentProps;
 }
+
+export interface PostProps {
+  post: PostProps;
+}
+
+export interface PostDetailProps {
+  id: number;
+  pst: PostProps;
+  authorId: number;
+}
