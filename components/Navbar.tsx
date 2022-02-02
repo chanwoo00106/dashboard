@@ -81,7 +81,7 @@ function Navbar() {
                 <Tooltip
                   isDisabled={!loggedIn}
                   hasArrow
-                  label="user email"
+                  label={me?.email}
                   bg="green.600"
                 >
                   <Avatar

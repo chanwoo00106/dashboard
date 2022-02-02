@@ -1,4 +1,5 @@
 export interface PostProps {
+  filter(arg0: (t: PostProps) => boolean): any;
   fillter?: any;
   id: number;
   author: AuthorProps;
@@ -37,4 +38,9 @@ export interface LikeProps {
   authorId: number;
   author: AuthorProps;
   length: any;
+}
+
+export interface DeleteButtonProps {
+  id: number;
+  post: PostProps;
 }

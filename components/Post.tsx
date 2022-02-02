@@ -25,7 +25,10 @@ function Post() {
     <Flex align="center" justify="center">
       <Stack spacing={8} mx="auto" w={1200} py={12} px={6}>
         {post.map(
-          ({ id, author, authorId, text, createdAt }: PostProps, i: number) => (
+          (
+            { id, author, authorId, text, createdAt, likes }: PostProps,
+            i: number
+          ) => (
             <Center key={i} py={6}>
               <Box
                 maxW="800px"
@@ -49,15 +52,25 @@ function Post() {
                   <Text color="gray.500">{text}</Text>
                 </Stack>
                 <Stack mt={10} direction="row" spacing={4} align="center">
-                  <Avatar src="" name={truncate(author.email)} alt="Author" />
+                  <Avatar src="" name={truncate(author.email)} alt={"Author"} />
                   <Stack direction="column" spacing={0} fontSize="sm">
-                    <Text fontWeight={600}>{author.email}</Text>
+                    <Text fontWeight={600}>{author?.email}</Text>
                     <Text color="gray.500">
                       {moment(createdAt).format("Do MMMM YYYY")}
                     </Text>
                   </Stack>
-                  <Stack mt={8} direction="row" spacing={6}>
-                    {me && author.id === me.id && <DeleteButton />}
+                </Stack>
+                <Stack mt={8} direction="row" spacing={6}>
+                  {me && author.id === me.id && (
+                    <DeleteButton id={id} post={post} />
+                  )}
+                </Stack>
+                <Stack direction="row" justify="center" spacing={6}>
+                  <Stack spacing={0} align="center">
+                    <Text fontSize="sm" color="gray.500">
+                      {likes?.length}
+                    </Text>
+                    {/* <CommentButton /> */}
                   </Stack>
                 </Stack>
               </Box>
