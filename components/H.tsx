@@ -3,7 +3,7 @@ import Head from "next/head";
 function H() {
   return (
     <Head>
-      <title>Dashborad</title>
+      <title>Dashboard</title>
       <meta name="description" content="아무생각 없이 만든 사이트" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Dashborad" />

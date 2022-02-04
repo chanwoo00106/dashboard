@@ -1,5 +1,5 @@
 import React from "react";
-import H from "../components/Head";
+import H from "./H";
 import Header from "./Header";
 
 const Layout: React.FC = ({ children }) => {
