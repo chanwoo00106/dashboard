@@ -30,9 +30,18 @@ export default async function handler(
           .json({ error: "You cannot like a post you created" });
 
       if (likeAuthorId === me.id) {
-        return res
-          .status(400)
-          .json({ error: "You cannot like a post you created" });
+        const result = await prisma.like.deleteMany({
+          where: {
+            author: {
+              email,
+            },
+            post: {
+              id,
+            },
+          },
+        });
+        res.status(200).json({ success: "Liked with success", result });
+        return;
       }
 
       const like = await prisma.like.create({
